@@ -3,3 +3,181 @@ title: "Mulivariate Viz"
 ---
 
 Use this file for practice with the **mulivariate viz** in-class activity.  Refer to the class website for details.
+```{r}
+#Import tidyverse
+library(tidyverse)
+library(ggridges)
+
+
+# Import and check out data
+education <- read.csv("https://mac-stat.github.io/data/sat.csv")
+head(education)
+```
+-**Exercise 1: SAT scores**
+
+```{r}
+education %>%
+  ggplot(aes(x= sat))+
+  geom_density(alpha=1)
+
+```
+The graph appears to be bimodal, with one peak falling at about 900, and another at about 1025. The range is from 1100 to 850.
+
+- **Exercise 2: SAT Scores vs Per Pupil Spending & SAT Scores vs Salaries**
+
+```{r}
+# Construct a plot of sat vs expend
+# Include a "best fit linear regression model" (HINT: method = "lm")
+
+education %>%
+  ggplot(aes(x = expend, y = sat))+
+  geom_point()+
+  geom_smooth(method = "lm", color = "red", se = TRUE)
+
+
+
+# Construct a plot of sat vs salary
+# Include a "best fit linear regression model" (HINT: method = "lm")
+
+education %>%
+  ggplot(aes(x = salary, y = sat))+
+  geom_point()+
+  geom_smooth(method = "lm", color = "red", se = TRUE)
+
+```
+
+It appears that the relationship between SAT score and spending trends downward. This suprises me, as I would think that more spending would have a higher sat
+
+- **Exercise 3: SAT Scores vs Per Pupil Spending and Teacher Salaries**
+
+
+```{r}
+education %>%
+  ggplot(aes(x = salary, y = sat, size = expend))+
+  geom_point()+
+  geom_smooth(method = "lm", color = "red", se = TRUE)
+```
+
+- **Exercise 4: Another way to Incorporate Scale**
+
+```{r}
+ggplot(education, aes(y = sat, x = salary, color = cut(expend, 3))) + 
+  geom_point() + 
+  geom_smooth(se = FALSE, method = "lm")
+```
+
+It appears that as salary and expend increases, sat increases, but if only one of them is increasing, Sat is decreasing
+
+-**Exercise 5: Finally an Explanation**
+
+
+>Part A
+
+```{r}
+education %>%
+  ggplot(aes(x=fracCat))+
+  geom_bar()
+
+```
+
+>Part B
+
+```{r}
+education %>%
+  ggplot(aes(x= sat, color = fracCat))+
+  geom_density()
+
+education %>%
+  ggplot(aes(y= sat, x= fracCat))+
+  geom_boxplot()
+
+```
+
+> Part C
+
+```{r}
+education %>%
+  ggplot(aes(x = salary, y = sat))+
+  geom_point()+
+  geom_smooth(method = "lm", color = "red", se = TRUE)+
+  facet_wrap("fracCat")
+```
+
+It appears that sat scores increase for states who spend on teacher's salary and have a low or high portion of their students take the SAT. states with a middle amount of their students taking the SAT have a negative relationship between sat and salary
+
+>Part D
+
+It appears as though more spending on salary decreases SAT Scores because states that have a higher portion of their students take the SAT also spend more on salary. When more students take the SAT, the avg score is lower. Thus looking at just sat and salry shows a decreasing relationship
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
