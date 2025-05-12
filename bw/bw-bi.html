@@ -298,7 +298,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header><p>Use this file to generate a professional looking <strong>bivariate</strong> visualization. The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
 ✔ dplyr     1.1.4     ✔ readr     2.1.5
@@ -311,7 +310,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ✖ dplyr::lag()    masks stats::lag()
 ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggpmisc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning: package 'ggpmisc' was built under R version 4.4.2</code></pre>
 </div>
@@ -331,24 +329,18 @@ Attaching package: 'ggpp'
 
 The following object is masked from 'package:ggplot2':
 
-    annotate</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>simpsons_episodes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-04/simpsons_episodes.csv'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 151 Columns: 14
-── Column specification ────────────────────────────────────────────────────────
+    annotate
+
+Rows: 151 Columns: 14── Column specification ────────────────────────────────────────────────────────
 Delimiter: ","
 chr  (4): image_url, production_code, title, video_url
 dbl  (9): id, imdb_rating, imdb_votes, number_in_season, number_in_series, o...
 date (1): original_air_date
-
 ℹ Use `spec()` to retrieve the full column specification for this data.
 ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>MODEL_USSimpsonsViewrshipOverTime <span class="ot">&lt;-</span> <span class="fu">lm</span>(us_viewers_in_millions <span class="sc">~</span> original_air_date, <span class="at">data =</span> simpsons_episodes)</span>
-<span id="cb10-2"><a href="#cb10-2"></a><span class="fu">summary</span>(MODEL_USSimpsonsViewrshipOverTime)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Call:
@@ -370,11 +362,6 @@ Residual standard error: 1.852 on 146 degrees of freedom
 Multiple R-squared:  0.256, Adjusted R-squared:  0.2509 
 F-statistic: 50.24 on 1 and 146 DF,  p-value: 5.392e-11</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>simpsons_episodes <span class="sc">%&gt;%</span></span>
-<span id="cb12-2"><a href="#cb12-2"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> original_air_date, <span class="at">y =</span> us_viewers_in_millions))<span class="sc">+</span></span>
-<span id="cb12-3"><a href="#cb12-3"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb12-5"><a href="#cb12-5"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Episode Air Date"</span>, <span class="at">y =</span> <span class="st">"Millions of US viewers"</span>, <span class="at">title =</span> <span class="st">"Simpsons US Viewership Over Time"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
 </div>
@@ -1017,30 +1004,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>
   </div>
 </nav><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="sourceCode" id="cb16" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb16-1"><a href="#cb16-1"></a><span class="co">---</span></span>
-<span id="cb16-2"><a href="#cb16-2"></a><span class="an">title:</span><span class="co"> "Bivariate Viz"</span></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="co">---</span></span>
-<span id="cb16-4"><a href="#cb16-4"></a></span>
-<span id="cb16-5"><a href="#cb16-5"></a>Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.</span>
-<span id="cb16-6"><a href="#cb16-6"></a></span>
-<span id="cb16-7"><a href="#cb16-7"></a></span>
-<span id="cb16-10"><a href="#cb16-10"></a><span class="in">```{r}</span></span>
-<span id="cb16-11"><a href="#cb16-11"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb16-12"><a href="#cb16-12"></a><span class="fu">library</span>(ggpmisc)</span>
-<span id="cb16-13"><a href="#cb16-13"></a></span>
-<span id="cb16-14"><a href="#cb16-14"></a>simpsons_episodes <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="st">'https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-04/simpsons_episodes.csv'</span>)</span>
-<span id="cb16-15"><a href="#cb16-15"></a><span class="in">```</span></span>
-<span id="cb16-18"><a href="#cb16-18"></a><span class="in">```{r}</span></span>
-<span id="cb16-19"><a href="#cb16-19"></a>MODEL_USSimpsonsViewrshipOverTime <span class="ot">&lt;-</span> <span class="fu">lm</span>(us_viewers_in_millions <span class="sc">~</span> original_air_date, <span class="at">data =</span> simpsons_episodes)</span>
-<span id="cb16-20"><a href="#cb16-20"></a><span class="fu">summary</span>(MODEL_USSimpsonsViewrshipOverTime)</span>
-<span id="cb16-21"><a href="#cb16-21"></a></span>
-<span id="cb16-22"><a href="#cb16-22"></a>simpsons_episodes <span class="sc">%&gt;%</span></span>
-<span id="cb16-23"><a href="#cb16-23"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> original_air_date, <span class="at">y =</span> us_viewers_in_millions))<span class="sc">+</span></span>
-<span id="cb16-24"><a href="#cb16-24"></a>  <span class="fu">geom_point</span>()<span class="sc">+</span></span>
-<span id="cb16-25"><a href="#cb16-25"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">color =</span> <span class="st">"red"</span>, <span class="at">se =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb16-26"><a href="#cb16-26"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Episode Air Date"</span>, <span class="at">y =</span> <span class="st">"Millions of US viewers"</span>, <span class="at">title =</span> <span class="st">"Simpsons US Viewership Over Time"</span>)</span>
-<span id="cb16-27"><a href="#cb16-27"></a><span class="in">```</span></span>
-</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1"></a><span class="co">---</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="an">title:</span><span class="co"> "Bivariate Viz"</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a><span class="co">---</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a></span>
+<span id="cb10-5"><a href="#cb10-5"></a>Use this file to generate a professional looking **bivariate** visualization.  The visualization will not perfect the first time but you are expected to improve it throughout the semester especially after covering advanced topics such as effective viz.</span>
+<span id="cb10-6"><a href="#cb10-6"></a></span>
+<span id="cb10-7"><a href="#cb10-7"></a></span>
+<span id="cb10-8"><a href="#cb10-8"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb10-9"><a href="#cb10-9"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb10-10"><a href="#cb10-10"></a><span class="in">library(ggpmisc)</span></span>
+<span id="cb10-11"><a href="#cb10-11"></a></span>
+<span id="cb10-12"><a href="#cb10-12"></a><span class="in">simpsons_episodes &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/data/2025/2025-02-04/simpsons_episodes.csv')</span></span>
+<span id="cb10-13"><a href="#cb10-13"></a><span class="in">```</span></span>
+<span id="cb10-14"><a href="#cb10-14"></a><span class="in">```{r, echo=FALSE}</span></span>
+<span id="cb10-15"><a href="#cb10-15"></a><span class="in">MODEL_USSimpsonsViewrshipOverTime &lt;- lm(us_viewers_in_millions ~ original_air_date, data = simpsons_episodes)</span></span>
+<span id="cb10-16"><a href="#cb10-16"></a><span class="in">summary(MODEL_USSimpsonsViewrshipOverTime)</span></span>
+<span id="cb10-17"><a href="#cb10-17"></a></span>
+<span id="cb10-18"><a href="#cb10-18"></a><span class="in">simpsons_episodes %&gt;%</span></span>
+<span id="cb10-19"><a href="#cb10-19"></a><span class="in">  ggplot(aes(x = original_air_date, y = us_viewers_in_millions))+</span></span>
+<span id="cb10-20"><a href="#cb10-20"></a><span class="in">  geom_point()+</span></span>
+<span id="cb10-21"><a href="#cb10-21"></a><span class="in">  geom_smooth(method = "lm", color = "red", se = TRUE) +</span></span>
+<span id="cb10-22"><a href="#cb10-22"></a><span class="in">  labs(x = "Episode Air Date", y = "Millions of US viewers", title = "Simpsons US Viewership Over Time")</span></span>
+<span id="cb10-23"><a href="#cb10-23"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
